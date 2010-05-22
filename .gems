@@ -1,3 +1,4 @@
-rmagick --version '>=2.13.1'
-gbarcode --version '>=0.98.16'
-prawn --version '>=0.8.4'
+rmagick
+gbarcode
+prawn
+

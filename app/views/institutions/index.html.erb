@@ -1,0 +1,36 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+  	$('#institution_table').dataTable();
+  });
+</script>
+
+<h1>Listing institutions</h1>
+
+<table id="institution_table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Format</th>
+    <th>Checksum</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+  </tr>
+  </thead>
+  <tbody>
+<% @institutions.each do |institution| %>
+  <tr>
+    <td><%= institution.name %></td>
+    <td><%= institution.email %></td>
+    <td><%= institution.symbology_name %></td>
+    <td><%= institution.checksum ? 'Yes' : 'No' %></td>
+    <td><%= link_to image_tag('/images/icons/page_edit.png', :alt => 'Edit'), edit_institution_path(institution) %></td>
+    <td><%= link_to image_tag('/images/icons/page_delete.png', :alt => 'Delete'), institution, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to image_tag('/images/icons/page_add.png', :alt => "Add New"), new_institution_path %>

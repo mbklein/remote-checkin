@@ -1,0 +1,21 @@
+<h1>Editing institution</h1>
+
+<% form_for(@institution) do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :name, 'Name' %>
+  <%= f.text_field :name, :size => 60 %><br/>
+  <%= f.label :email, 'Email' %>
+  <%= f.text_field :email, :size => 45 %><br/>
+  <%= f.label :symbology, 'Symbology' %>
+  <%= select_tag 'symbology', options_for_select(Institution::SymbologyNames.inject([]) { |r,i| r << [i,r.length+1] }, @institution.symbology) %>
+  <br/>
+  <%= f.label :checksum, 'Checksum?' %>
+  <%= f.check_box :checksum %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @institution %> |
+<%= link_to 'Back', institutions_path %>

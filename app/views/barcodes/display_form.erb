@@ -1,3 +1,5 @@
+<h1>Scan barcodes</h1>
+
 <% form_tag('/barcode', :method => :post) do -%>
   <p>Institution: <%= select_tag 'institution_id', Institution.find(:all).collect { |inst| %{<option value="#{inst.id}">#{inst.name}</option>}}.join('') %></p>
   <p>

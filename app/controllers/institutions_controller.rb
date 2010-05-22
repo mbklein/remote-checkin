@@ -1,4 +1,12 @@
 class InstitutionsController < ApplicationController
+  before_filter :cancel?, :only => [ :create, :update ]
+
+  def cancel?
+    if params[:commit] == 'Cancel'
+      redirect_to institutions_path
+    end
+  end
+  
   # GET /institutions
   # GET /institutions.xml
   def index
@@ -45,7 +53,7 @@ class InstitutionsController < ApplicationController
     respond_to do |format|
       if @institution.save
         flash[:notice] = 'Institution was successfully created.'
-        format.html { redirect_to(@institution) }
+        format.html { redirect_to institutions_path }
         format.xml  { render :xml => @institution, :status => :created, :location => @institution }
       else
         format.html { render :action => "new" }
@@ -62,7 +70,7 @@ class InstitutionsController < ApplicationController
     respond_to do |format|
       if @institution.update_attributes(params[:institution])
         flash[:notice] = 'Institution was successfully updated.'
-        format.html { redirect_to(@institution) }
+        format.html { redirect_to institutions_path }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

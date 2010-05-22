@@ -1,0 +1,21 @@
+<h1>Send barcodes</h1>
+<% unless @confirmed -%>
+  <span style="color:red">Please confirm that you wish to send the following <%= @barcodes.length %> barcodes to <b><%= @institution.name %></b> to be checked in.</span>
+  <% form_tag('/barcode', :method => :post) do -%>
+  <%= hidden_field_tag 'institution_id', @institution.id %>
+  <%= hidden_field_tag 'barcodes', @barcodes.join(';') -%>
+  <%= submit_tag 'Confirm' -%>
+  <%= submit_tag 'Cancel' -%>
+  <% end -%>
+<% end -%>
+<p>To: <%= @institution.email %></p>
+<% @barcodes.in_groups_of(2).each { |group| -%>
+  <p>
+  <% group.each { |code| -%>
+    <% unless code.nil? -%>
+      <img src="/barcode/<%= @institution.id %>/<%= code %>"> 
+    <% end -%>
+  <% } -%>
+  </p>
+<% } -%>
+

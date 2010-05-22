@@ -3,9 +3,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # The priority is based upon order of creation: first created -> highest priority.
 
-  map.connect 'barcode', :controller => 'barcode', :action => 'display_form', :conditions => { :method => :get  }
-  map.connect 'barcode', :controller => 'barcode', :action => 'send_mail'   , :conditions => { :method => :post }
-  map.connect 'barcode/:institution_id/:string', :controller => 'barcode', :action => 'image'
+  map.connect 'barcode', :controller => 'barcodes', :action => 'display_form', :conditions => { :method => :get  }
+  map.connect 'barcode', :controller => 'barcodes', :action => 'send_mail'   , :conditions => { :method => :post }
+  map.connect 'barcode/:institution_id/:string', :controller => 'barcodes', :action => 'image'
   
   # Sample of regular route:
   #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'

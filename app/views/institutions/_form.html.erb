@@ -1,0 +1,16 @@
+<% form_for(@institution, :html => { :class => 'ui-widget' }) do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :name, 'Name' %>
+  <%= f.text_field :name, :size => 60 %><br/>
+  <%= f.label :email, 'Email' %>
+  <%= f.text_field :email, :size => 60 %><br/>
+  <%= f.label :symbology, 'Symbology' %>
+  <%= select_tag 'institution[symbology]', options_for_select(Institution::SymbologyNames.inject([]) { |r,i| r << [i,r.length+1] }, @institution.symbology) %>
+  <%= f.label :checksum, 'Checksum?' %>
+  <%= f.check_box :checksum %>
+
+  <p>
+    <%= f.submit 'Submit' %>
+    <%= f.submit 'Cancel' %>
+  </p>
+<% end %>

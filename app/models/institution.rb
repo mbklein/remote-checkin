@@ -14,7 +14,7 @@ class Institution < ActiveRecord::Base
   end
   
   def symbology_name
-    SymbologyNames[symbology]
+    SymbologyNames[symbology-1]
   end
   
   def symbology_name=(value)
